@@ -1,6 +1,6 @@
 # Swagger\Client\DefaultApi
 
-All URIs are relative to *https://www.buda.com/*
+All URIs are relative to *https://www.buda.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

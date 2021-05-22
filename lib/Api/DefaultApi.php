@@ -99,7 +99,7 @@ class DefaultApi
      */
     public function apiV2BalancesGet($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
     {
-        $this->apiV2BalancesGetWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
+        return $this->apiV2BalancesGetWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
     }
 
     /**
@@ -146,7 +146,7 @@ class DefaultApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            return [$response->getBody(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -343,7 +343,7 @@ class DefaultApi
      */
     public function apiV2MarketsGet()
     {
-        $this->apiV2MarketsGetWithHttpInfo();
+        return $this->apiV2MarketsGetWithHttpInfo();
     }
 
     /**
@@ -387,7 +387,7 @@ class DefaultApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            return [$response->getBody(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -591,7 +591,7 @@ class DefaultApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            return [$response->getBody(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
