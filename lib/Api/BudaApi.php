@@ -807,7 +807,7 @@ class BudaApi
         $this->secret = $secret;
     }
 
-    private function authBuda($route,$body){
+    private function authBuda($route,$body = null){
         $this->nonce = time();
         $this->signature = hash_hmac("sha384",$route.(($body)?base64_encode($body)." ":" ").$this->signature,$this->secret);
     }
