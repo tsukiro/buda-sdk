@@ -146,7 +146,7 @@ class DefaultApi
                 );
             }
 
-            return [$response->getBody(), $statusCode, $response->getHeaders()];
+            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -387,7 +387,7 @@ class DefaultApi
                 );
             }
 
-            return [$response->getBody(), $statusCode, $response->getHeaders()];
+            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -546,7 +546,7 @@ class DefaultApi
      */
     public function apiV2MarketsMarketIdTickerGet($market_id)
     {
-        $this->apiV2MarketsMarketIdTickerGetWithHttpInfo($market_id);
+        return $this->apiV2MarketsMarketIdTickerGetWithHttpInfo($market_id);
     }
 
     /**
@@ -591,7 +591,7 @@ class DefaultApi
                 );
             }
 
-            return [$response->getBody(), $statusCode, $response->getHeaders()];
+            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
