@@ -20,11 +20,11 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
   "repositories": [
     {
       "type": "git",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+      "url": "https://github.com/tsukiro/buda-sdk.git"
     }
   ],
   "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+    "tsukiro/buda-sdk": "*@dev"
   }
 }
 ```
@@ -61,23 +61,14 @@ $apiInstance = new Swagger\Client\Api\DefaultApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
+$x_sbtc_apikey = "x_sbtc_apikey_example"; // string | Market ID
+$x_sbtc_nonce = "x_sbtc_nonce_example"; // string | 
+$x_sbtc_signature = "x_sbtc_signature_example"; // string | 
 
 try {
-    $apiInstance->apiV2BalancesGet();
+    $apiInstance->apiV2BalancesGet($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->apiV2BalancesGet: ', $e->getMessage(), PHP_EOL;
-}
-
-$apiInstance = new Swagger\Client\Api\DefaultApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-
-try {
-    $apiInstance->apiV2MarketsBTCCLPTickerGet();
-} catch (Exception $e) {
-    echo 'Exception when calling DefaultApi->apiV2MarketsBTCCLPTickerGet: ', $e->getMessage(), PHP_EOL;
 }
 
 $apiInstance = new Swagger\Client\Api\DefaultApi(
@@ -91,18 +82,31 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->apiV2MarketsGet: ', $e->getMessage(), PHP_EOL;
 }
+
+$apiInstance = new Swagger\Client\Api\DefaultApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$market_id = "market_id_example"; // string | Market ID
+
+try {
+    $apiInstance->apiV2MarketsMarketIdTickerGet($market_id);
+} catch (Exception $e) {
+    echo 'Exception when calling DefaultApi->apiV2MarketsMarketIdTickerGet: ', $e->getMessage(), PHP_EOL;
+}
 ?>
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:3000/*
+All URIs are relative to *https://www.buda.com/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**apiV2BalancesGet**](docs/Api/DefaultApi.md#apiv2balancesget) | **GET** /api/v2/balances | 
-*DefaultApi* | [**apiV2MarketsBTCCLPTickerGet**](docs/Api/DefaultApi.md#apiv2marketsbtcclptickerget) | **GET** /api/v2/markets/BTC-CLP/ticker | 
 *DefaultApi* | [**apiV2MarketsGet**](docs/Api/DefaultApi.md#apiv2marketsget) | **GET** /api/v2/markets | 
+*DefaultApi* | [**apiV2MarketsMarketIdTickerGet**](docs/Api/DefaultApi.md#apiv2marketsmarketidtickerget) | **GET** /api/v2/markets/{market_id}/ticker | 
 
 ## Documentation For Models
 
