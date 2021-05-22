@@ -1,6 +1,6 @@
 <?php
 /**
- * DefaultApiTest
+ * BudaApiTest
  * PHP version 5
  *
  * @category Class
@@ -32,14 +32,14 @@ use Swagger\Client\ApiException;
 use Swagger\Client\ObjectSerializer;
 
 /**
- * DefaultApiTest Class Doc Comment
+ * BudaApiTest Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DefaultApiTest extends \PHPUnit_Framework_TestCase
+class BudaApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

@@ -1,10 +1,10 @@
 <?php
 /**
- * DefaultApi
+ * BudaApi
  * PHP version 5
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Tsukiro\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace Swagger\Client\Api;
+namespace Tsukiro\Client\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -33,20 +33,20 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Swagger\Client\ApiException;
-use Swagger\Client\Configuration;
-use Swagger\Client\HeaderSelector;
-use Swagger\Client\ObjectSerializer;
+use Tsukiro\Client\ApiException;
+use Tsukiro\Client\Configuration;
+use Tsukiro\Client\HeaderSelector;
+use Tsukiro\Client\ObjectSerializer;
 
 /**
- * DefaultApi Class Doc Comment
+ * BudaApi Class Doc Comment
  *
  * @category Class
- * @package  Swagger\Client
+ * @package  Tsukiro\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class DefaultApi
+class BudaApi
 {
     /**
      * @var ClientInterface
@@ -78,6 +78,11 @@ class DefaultApi
         $this->headerSelector = $selector ?: new HeaderSelector();
     }
 
+    private $apiKey;
+    private $secret;
+    private $signature;
+    private $nonce;
+
     /**
      * @return Configuration
      */
@@ -87,36 +92,38 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2BalancesGet
+     * Operation getBalances
      *
      * @param  string $x_sbtc_apikey Market ID (required)
      * @param  string $x_sbtc_nonce x_sbtc_nonce (required)
      * @param  string $x_sbtc_signature x_sbtc_signature (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV2BalancesGet($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+    public function getBalances()
     {
-        return $this->apiV2BalancesGetWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
+        return $this->getBalancesWithHttpInfo();
     }
 
     /**
-     * Operation apiV2BalancesGetWithHttpInfo
+     * Operation getBalancesWithHttpInfo
      *
      * @param  string $x_sbtc_apikey Market ID (required)
      * @param  string $x_sbtc_nonce (required)
      * @param  string $x_sbtc_signature (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV2BalancesGetWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+    public function getBalancesWithHttpInfo()
     {
+        
+        $this->authBuda("GET /api/v2/balances ");
         $returnType = '';
-        $request = $this->apiV2BalancesGetRequest($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
+        $request = $this->getBalancesRequest($this->apiKey, $this->nonce, $this->signature);
 
         try {
             $options = $this->createHttpClientOption();
@@ -156,7 +163,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2BalancesGetAsync
+     * Operation getBalancesAsync
      *
      * 
      *
@@ -167,9 +174,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2BalancesGetAsync($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+    public function getBalancesAsync($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
     {
-        return $this->apiV2BalancesGetAsyncWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+        return $this->getBalancesAsyncWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -178,7 +185,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2BalancesGetAsyncWithHttpInfo
+     * Operation getBalancesAsyncWithHttpInfo
      *
      * 
      *
@@ -189,10 +196,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2BalancesGetAsyncWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+    public function getBalancesAsyncWithHttpInfo($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
     {
         $returnType = '';
-        $request = $this->apiV2BalancesGetRequest($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
+        $request = $this->getBalancesRequest($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -218,7 +225,7 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'apiV2BalancesGet'
+     * Create request for operation 'getBalances'
      *
      * @param  string $x_sbtc_apikey Market ID (required)
      * @param  string $x_sbtc_nonce (required)
@@ -227,24 +234,24 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function apiV2BalancesGetRequest($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
+    protected function getBalancesRequest($x_sbtc_apikey, $x_sbtc_nonce, $x_sbtc_signature)
     {
         // verify the required parameter 'x_sbtc_apikey' is set
         if ($x_sbtc_apikey === null || (is_array($x_sbtc_apikey) && count($x_sbtc_apikey) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $x_sbtc_apikey when calling apiV2BalancesGet'
+                'Missing the required parameter $x_sbtc_apikey when calling getBalances'
             );
         }
         // verify the required parameter 'x_sbtc_nonce' is set
         if ($x_sbtc_nonce === null || (is_array($x_sbtc_nonce) && count($x_sbtc_nonce) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $x_sbtc_nonce when calling apiV2BalancesGet'
+                'Missing the required parameter $x_sbtc_nonce when calling getBalances'
             );
         }
         // verify the required parameter 'x_sbtc_signature' is set
         if ($x_sbtc_signature === null || (is_array($x_sbtc_signature) && count($x_sbtc_signature) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $x_sbtc_signature when calling apiV2BalancesGet'
+                'Missing the required parameter $x_sbtc_signature when calling getBalances'
             );
         }
 
@@ -334,30 +341,30 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsGet
+     * Operation getMarkets
      *
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV2MarketsGet()
+    public function getMarkets()
     {
-        return $this->apiV2MarketsGetWithHttpInfo();
+        return $this->getMarketsWithHttpInfo();
     }
 
     /**
-     * Operation apiV2MarketsGetWithHttpInfo
+     * Operation getMarketsWithHttpInfo
      *
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV2MarketsGetWithHttpInfo()
+    public function getMarketsWithHttpInfo()
     {
         $returnType = '';
-        $request = $this->apiV2MarketsGetRequest();
+        $request = $this->getMarketsRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -397,7 +404,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsGetAsync
+     * Operation getMarketsAsync
      *
      * 
      *
@@ -405,9 +412,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2MarketsGetAsync()
+    public function getMarketsAsync()
     {
-        return $this->apiV2MarketsGetAsyncWithHttpInfo()
+        return $this->getMarketsAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -416,7 +423,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsGetAsyncWithHttpInfo
+     * Operation getMarketsAsyncWithHttpInfo
      *
      * 
      *
@@ -424,10 +431,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2MarketsGetAsyncWithHttpInfo()
+    public function getMarketsAsyncWithHttpInfo()
     {
         $returnType = '';
-        $request = $this->apiV2MarketsGetRequest();
+        $request = $this->getMarketsRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -453,13 +460,13 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'apiV2MarketsGet'
+     * Create request for operation 'getMarkets'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function apiV2MarketsGetRequest()
+    protected function getMarketsRequest()
     {
 
         $resourcePath = '/api/v2/markets';
@@ -536,32 +543,32 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsMarketIdTickerGet
+     * Operation getTicker
      *
      * @param  string $market_id Market ID (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV2MarketsMarketIdTickerGet($market_id)
+    public function getTicker($market_id)
     {
-        return $this->apiV2MarketsMarketIdTickerGetWithHttpInfo($market_id);
+        return $this->getTickerWithHttpInfo($market_id);
     }
 
     /**
-     * Operation apiV2MarketsMarketIdTickerGetWithHttpInfo
+     * Operation getTickerWithHttpInfo
      *
      * @param  string $market_id Market ID (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @throws \Tsukiro\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV2MarketsMarketIdTickerGetWithHttpInfo($market_id)
+    public function getTickerWithHttpInfo($market_id)
     {
         $returnType = '';
-        $request = $this->apiV2MarketsMarketIdTickerGetRequest($market_id);
+        $request = $this->getTickerRequest($market_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -601,7 +608,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsMarketIdTickerGetAsync
+     * Operation getTickerAsync
      *
      * 
      *
@@ -610,9 +617,9 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2MarketsMarketIdTickerGetAsync($market_id)
+    public function getTickerAsync($market_id)
     {
-        return $this->apiV2MarketsMarketIdTickerGetAsyncWithHttpInfo($market_id)
+        return $this->getTickerAsyncWithHttpInfo($market_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -621,7 +628,7 @@ class DefaultApi
     }
 
     /**
-     * Operation apiV2MarketsMarketIdTickerGetAsyncWithHttpInfo
+     * Operation getTickerAsyncWithHttpInfo
      *
      * 
      *
@@ -630,10 +637,10 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV2MarketsMarketIdTickerGetAsyncWithHttpInfo($market_id)
+    public function getTickerAsyncWithHttpInfo($market_id)
     {
         $returnType = '';
-        $request = $this->apiV2MarketsMarketIdTickerGetRequest($market_id);
+        $request = $this->getTickerRequest($market_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -659,19 +666,19 @@ class DefaultApi
     }
 
     /**
-     * Create request for operation 'apiV2MarketsMarketIdTickerGet'
+     * Create request for operation 'getTicker'
      *
      * @param  string $market_id Market ID (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function apiV2MarketsMarketIdTickerGetRequest($market_id)
+    protected function getTickerRequest($market_id)
     {
         // verify the required parameter 'market_id' is set
         if ($market_id === null || (is_array($market_id) && count($market_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $market_id when calling apiV2MarketsMarketIdTickerGet'
+                'Missing the required parameter $market_id when calling getTicker'
             );
         }
 
@@ -773,5 +780,35 @@ class DefaultApi
         }
 
         return $options;
+    }
+
+    /**
+     * Get API KEY for BUDA private api
+     *
+     * @return string of current api key
+     */
+    public function getApiKey(){
+        return $this->apiKey;
+    }
+
+    public function setApiKey($apiKey){
+        $this->apiKey = $apiKey;
+    }
+    /**
+     * Get Secret for BUDA private api
+     *
+     * @return string of current secret
+     */
+    public function getSecret(){
+        return $this->secret;
+    }
+    
+    public function setSecret($secret){
+        $this->secret = $secret;
+    }
+
+    private function authBuda($route,$body){
+        $this->nonce = time();
+        $this->signature = hash_hmac("sha384",$route.(($body)?base64_encode($body)." ":" ").$this->signature,$this->secret);
     }
 }

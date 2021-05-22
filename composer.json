@@ -1,13 +1,13 @@
 {
     "name": "tsukiro/buda-sdk",
-    "description": "",
+    "description": "Este proyecto tiene como finalidad generar un SDK en PHP para utilizar los endpoints del sitio Buda.com",
     "keywords": [
         "swagger",
         "php",
         "sdk",
         "api"
     ],
-    "homepage": "http://swagger.io",
+    "homepage": "https://github.com/tsukiro/buda-sdk",
     "license": "proprietary",
     "authors": [
         {
@@ -32,9 +32,9 @@
         "friendsofphp/php-cs-fixer": "^3.0.0"
     },
     "autoload": {
-        "psr-4": { "Swagger\\Client\\" : "lib/" }
+        "psr-4": { "Tsukiro\\Client\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "Swagger\\Client\\" : "test/" }
+        "psr-4": { "Tsukiro\\Client\\" : "test/" }
     }
 }
