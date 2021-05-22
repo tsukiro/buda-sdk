@@ -81,22 +81,22 @@ class DefaultApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for apiV2MarketsBTCCLPTickerGet
-     *
-     * .
-     *
-     */
-    public function testApiV2MarketsBTCCLPTickerGet()
-    {
-    }
-
-    /**
      * Test case for apiV2MarketsGet
      *
      * .
      *
      */
     public function testApiV2MarketsGet()
+    {
+    }
+
+    /**
+     * Test case for apiV2MarketsMarketIdTickerGet
+     *
+     * .
+     *
+     */
+    public function testApiV2MarketsMarketIdTickerGet()
     {
     }
 }

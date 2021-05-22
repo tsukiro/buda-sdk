@@ -17,12 +17,6 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
 
 ```
 {
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/tsukiro/buda-sdk.git"
-    }
-  ],
   "require": {
     "tsukiro/buda-sdk": "*@dev"
   }
@@ -61,7 +55,7 @@ $apiInstance = new Swagger\Client\Api\DefaultApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$x_sbtc_apikey = "x_sbtc_apikey_example"; // string | Market ID
+$x_sbtc_apikey = "x_sbtc_apikey_example"; // string |
 $x_sbtc_nonce = "x_sbtc_nonce_example"; // string | 
 $x_sbtc_signature = "x_sbtc_signature_example"; // string | 
 
@@ -100,7 +94,7 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://www.buda.com/*
+All URIs are relative to *https://www.buda.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
