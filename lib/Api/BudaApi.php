@@ -153,7 +153,7 @@ class BudaApi
                 );
             }
 
-            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
+            return [json_decode($response->getBody()->getContents()), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -394,7 +394,7 @@ class BudaApi
                 );
             }
 
-            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
+            return [json_decode($response->getBody()->getContents()), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
@@ -598,7 +598,7 @@ class BudaApi
                 );
             }
 
-            return [$response->getBody()->getContents(), $statusCode, $response->getHeaders()];
+            return [json_decode($response->getBody()->getContents()), $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
