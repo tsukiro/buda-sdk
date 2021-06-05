@@ -11,7 +11,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-
+[![PHP Composer](https://github.com/tsukiro/buda-sdk/actions/workflows/php.yml/badge.svg)](https://github.com/tsukiro/buda-sdk/actions/workflows/php.yml)
 # Description
 Este proyecto tiene como finalidad generar un SDK en PHP para utilizar los endpoints del sitio Buda.com
 Por ahora el proyecto está generado con el Codegen de Tsukiro que podrá ser cambiado en un futuro Release.
